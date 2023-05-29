@@ -29,7 +29,7 @@ const updateBlog = async (req, res) => {
       success: true
     })
   } catch (error) {
-    throw new Error(error)
+    return res.json({ error: error.message })
   }
 }
 
@@ -44,7 +44,7 @@ const deleteBlog = async (req, res) => {
       success: true
     })
   } catch (error) {
-    throw new Error(error)
+    return res.json({ error: error.message })
   }
 }
 
@@ -57,7 +57,7 @@ const getBlogs = async (req, res) => {
       success: true
     })
   } catch (error) {
-    throw new Error(error)
+    return res.json({ error: error.message })
   }
 }
 
@@ -67,12 +67,14 @@ const getBlog = async (req, res) => {
   try {
     const oneBlog = await Blog.findById(id)
 
+    if (!oneBlog) throw new Error('Blog no Encontrado')
+
     return res.json({
       blog: oneBlog,
       success: true
     })
   } catch (error) {
-    throw new Error(error)
+    return res.json({ error: error.message })
   }
 }
 
