@@ -14,7 +14,7 @@ const createBlog = async (req, res) => {
       success: true
     })
   } catch (error) {
-    return res.json({ error: error.message })
+    return res.json({ message: error.message, error: true })
   }
 }
 
@@ -22,14 +22,17 @@ const updateBlog = async (req, res) => {
   const { id } = req.params
 
   try {
-    await Blog.findByIdAndUpdate(id, req.body)
+    const updatedBlog = await Blog.findByIdAndUpdate(id, req.body, {
+      new: true
+    })
 
     return res.json({
       message: 'Blog Actualizado',
-      success: true
+      success: true,
+      updatedBlog
     })
   } catch (error) {
-    return res.json({ error: error.message })
+    return res.json({ message: error.message, error: true })
   }
 }
 
@@ -44,7 +47,7 @@ const deleteBlog = async (req, res) => {
       success: true
     })
   } catch (error) {
-    return res.json({ error: error.message })
+    return res.json({ message: error.message, error: true })
   }
 }
 
@@ -57,7 +60,7 @@ const getBlogs = async (req, res) => {
       success: true
     })
   } catch (error) {
-    return res.json({ error: error.message })
+    return res.json({ message: error.message, error: true })
   }
 }
 
@@ -74,7 +77,7 @@ const getBlog = async (req, res) => {
       success: true
     })
   } catch (error) {
-    return res.json({ error: error.message })
+    return res.json({ message: error.message, error: true })
   }
 }
 

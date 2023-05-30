@@ -20,7 +20,7 @@ const login = async (req, res) => {
 
     generateToken(admin.id, res)
   } catch (error) {
-    return res.json({ error: error.message })
+    return res.json({ message: error.message, error: true })
   }
 }
 
