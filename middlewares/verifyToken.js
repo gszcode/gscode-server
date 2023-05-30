@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken')
 
 const verifyToken = (req, res, next) => {
-  const { token } = req.cookies
+  const getToken = req.headers.authorization
+  const token = getToken.split(' ')[1]
 
   try {
     if (!token) throw new Error('Sin Autorización')
