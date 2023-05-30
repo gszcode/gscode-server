@@ -22,6 +22,9 @@ const blogRoute = require('./routes/blogRoute')
 
 app.use('/api/auth', authRoute)
 app.use('/api/blog', blogRoute)
+app.use('/', (req, res) => {
+  res.send('AHAHAHAHAH')
+})
 
 // Errors
 const handleError = require('./middlewares/handleError')
