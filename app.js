@@ -11,9 +11,9 @@ const database = require('./database/index')
 database()
 
 // Middlewares
+app.use(express.json())
 app.use(cors())
 app.use(morgan('dev'))
-app.use(express.json())
 app.use(cookieParser())
 
 // Routes
@@ -22,9 +22,6 @@ const blogRoute = require('./routes/blogRoute')
 
 app.use('/api/auth', authRoute)
 app.use('/api/blog', blogRoute)
-app.use('/', (req, res) => {
-  res.send('AHAHAHAHAH')
-})
 
 // Errors
 const handleError = require('./middlewares/handleError')
