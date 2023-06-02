@@ -2,7 +2,6 @@ const Blog = require('../models/blogModel')
 
 const createBlog = async (req, res) => {
   const { title, description, image } = req.body
-
   try {
     if (!title || !description || !image) throw new Error('Campos Incompletos')
 
